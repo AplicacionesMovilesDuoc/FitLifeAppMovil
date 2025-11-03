@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.ksp)
+
 }
 
 android {
@@ -12,12 +14,15 @@ android {
 
     defaultConfig {
         applicationId = "com.example.fitlifespa"
-        minSdk = 21
-        targetSdk = 36
+        minSdk = 23
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -55,6 +60,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -67,7 +74,6 @@ dependencies {
     // ========================================
     // NETWORKING - API REST
     // ========================================
-
     // OkHttp - Cliente HTTP
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
@@ -84,4 +90,19 @@ dependencies {
 
     // Coil - Para cargar imágenes desde URLs (opcional)
     implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // Camera & Gallery
+    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation("com.google.accompanist:accompanist-permissions:0.32.0")
+
+    // Room Database
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+
+
+    implementation("androidx.room:room-runtime:2.5.0")
 }

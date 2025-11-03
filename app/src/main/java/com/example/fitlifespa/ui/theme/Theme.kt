@@ -11,47 +11,78 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+val FitLifeColorScheme = lightColorScheme(
+    primary = Color(0xFFFFD700),     // Amarillo vibrante - Energía
+    onPrimary = Color(0xFF000000),   // Negro - Elegancia
+    primaryContainer = Color(0xFFFFEB3B), // Amarillo claro
+    onPrimaryContainer = Color(0xFF000000),
+
+    secondary = Color(0xFF212121),   // Negro grisáceo - Profesionalismo
+    onSecondary = Color(0xFFFFFFFF), // Blanco - Pureza
+    secondaryContainer = Color(0xFF424242),
+    onSecondaryContainer = Color(0xFFFFFFFF),
+
+    background = Color(0xFFFFFFFF),  // Blanco - Limpieza
+    onBackground = Color(0xFF000000),
+    surface = Color(0xFFFAFAFA),     // Blanco casi puro
+    onSurface = Color(0xFF000000),
+
+    error = Color(0xFFB00020),
+    onError = Color(0xFFFFFFFF)
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+// Colores personalizados adicionales
+val FitLifeCustomColors = object {
+    val fitnessYellow = Color(0xFFFFD700)
+    val energyYellow = Color(0xFFFFC400)
+    val jetBlack = Color(0xFF000000)
+    val charcoal = Color(0xFF212121)
+    val pureWhite = Color(0xFFFFFFFF)
+    val offWhite = Color(0xFFFAFAFA)
+}
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+val FitLifeTypography = Typography(
+    displayLarge = TextStyle(
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.Bold,
+        fontSize = 57.sp,
+        lineHeight = 64.sp,
+        letterSpacing = (-0.25).sp
+    ),
+    headlineMedium = TextStyle(
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 28.sp,
+        lineHeight = 36.sp
+    ),
+    titleLarge = TextStyle(
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.Bold,
+        fontSize = 22.sp,
+        lineHeight = 28.sp
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
+    ),
+    labelLarge = TextStyle(
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp
+    )
 )
 
 @Composable
-fun FitLifeSPATheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+fun FitLifeTheme(
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = LightColorScheme,
         typography = Typography,
         content = content
     )
